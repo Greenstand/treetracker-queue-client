@@ -24,7 +24,7 @@ pip install aiopg psycopg2
 
 ## Database Setup
 
-Before using the client, set up the necessary PostgreSQL table for the queue:
+Before using the client, you will need to set up the necessary PostgreSQL table for testing locally otherwise skip this part:
 
 ```sql
 CREATE SCHEMA queue; -- creates a schema called queue
@@ -94,19 +94,18 @@ asyncio.run(run_publisher())
 
 - When you publish a message, you’ll see:
 
-  ```
-  Postgres message dispatch success: (1, 'my_channel', 'Hello, PostgreSQL!')
+  ```Postgres message dispatch success: (1, 'my_channel', 'Hello, PostgreSQL!')
   ```
 
 - When you subscribe to a channel, you’ll receive:
 
-  ```
-  Receive <- Hello, PostgreSQL!
+  ```  Receive <- Hello, PostgreSQL!
   ```
 
 ## Methods
 
 ### `subscribe(conn, channel: str)`
+
 Listens for notifications on a PostgreSQL channel.
 
 - **Parameters**:
@@ -116,6 +115,7 @@ Listens for notifications on a PostgreSQL channel.
 - **Returns**: Prints out the messages received from the channel.
 
 ### `publish(dsn: str, channel: str, data: str)`
+
 Publishes a message to a PostgreSQL channel by inserting data into the `queue.message` table.
 
 - **Parameters**:
@@ -129,7 +129,3 @@ Publishes a message to a PostgreSQL channel by inserting data into the `queue.me
 
 - The code catches and handles common PostgreSQL errors during subscription and publishing.
 - It also ensures that listeners receive a 'finish' message, signaling the end of notifications.
-
-## License
-
-This project is open-source and available under the MIT License.
