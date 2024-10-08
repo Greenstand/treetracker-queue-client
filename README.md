@@ -94,12 +94,14 @@ asyncio.run(run_publisher())
 
 - When you publish a message, you’ll see:
 
-  ```Postgres message dispatch success: (1, 'my_channel', 'Hello, PostgreSQL!')
+  ```
+  Postgres message dispatch success: (1, 'my_channel', 'Hello, PostgreSQL!')
   ```
 
 - When you subscribe to a channel, you’ll receive:
 
-  ```  Receive <- Hello, PostgreSQL!
+  ``` 
+  Receive <- Hello, PostgreSQL!
   ```
 
 ## Methods
