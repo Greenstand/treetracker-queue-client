@@ -7,6 +7,8 @@ rootpath = os.path.join(os.getcwd(), "pg-queue")
 sys.path.append(rootpath)
 
 from fetch import fetch
+from publish import publish
+from subscribe import subscribe
 
 asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
@@ -26,3 +28,31 @@ async def test_async_fetch():
     )
     subset = {"channel": "sports", "data": {"game": "NFL"}}
     assert subset.items() <= result[0].items()
+
+
+# test message publish and subscribe functions
+@pytest.mark.asyncio
+@pytest.mark.timeout(30)
+async def test_async_publish_sub():
+
+    # subscribe to channel
+    sub_result = await subscribe(
+        connection_str=os.environ.get("CONNECTION_URL"), channel="news"
+    )
+
+    # publish message
+    pub_result = await publish(
+        connection_str=os.environ.get("CONNECTION_URL"),
+        channel="news",
+        data={"topic": "business"},
+    )
+
+    subset = {"channel": "news", "data": {"topic": "business"}}
+
+    # confirm published message data
+    assert subset.items() <= pub_result.items()
+
+    # compare notification message payload with publised message data
+    for notification in sub_result:
+        assert subset.items() <= json.loads(notification[1]).items()
+        sub_result.close()
