@@ -1,9 +1,0 @@
-{
-    "python.analysis.extraPaths": [
-        "./pg-queue"
-    ],
-    "[python]": {
-        "editor.defaultFormatter": "ms-python.black-formatter",
-        "editor.formatOnSave": true
-    }
-}
