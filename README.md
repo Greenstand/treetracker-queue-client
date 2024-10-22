@@ -1,17 +1,20 @@
 # Treetracker queue client for Python
 
-## Steps to run the publish/subscribe tests
+## Follow the steps below to run the publish/subscribe tests
 
-## First activate virtual environment:
+## Create virtual environment:
+py -m venv venv
+
+## Activate virtual environment:
 .\venv\Scripts\activate
 
-## Second postgres DB connection url into .env file as follows:
+## Add postgres DB connection url into .env file as follows:
 CONNECTION_URL="connection string goes here"
 
-## Third install the required packages by running:
+## Install the required packages by running:
 pip install -r ./requirements.txt
 
-## Fourth run the end to end test:
+## Run the end to end test:
 pytest .\tests\test_message.py
 
 ## Finally deactivate to get out of the virtual env:
