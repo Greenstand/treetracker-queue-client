@@ -11,3 +11,6 @@ lib64
 .env
 .vscode/
 venv/
+tests/__pycache__/
+pg-queue/__pycache__/
+.pytest_cache/
